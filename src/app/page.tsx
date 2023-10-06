@@ -3,16 +3,17 @@ import { spawn } from "child_process";
 import { useState } from "react";
 import { BsFillDice5Fill } from "react-icons/bs";
 import useSWR from "swr";
+import { motion } from "framer-motion";
 
 type FetcherArgs = [input: RequestInfo, init?: RequestInit];
 
 const fetcher = (...args: FetcherArgs) =>
   fetch(...args).then((res) => res.json());
 
-  const fetchData = async () => {
-    const response = await fetcher('https://api.adviceslip.com/advice');
-    return response;
-  };
+const fetchData = async () => {
+  const response = await fetcher("https://api.adviceslip.com/advice");
+  return response;
+};
 
 export default function Home() {
   const { data, error, isLoading, isValidating, mutate } = useSWR(
@@ -25,7 +26,7 @@ export default function Home() {
       const newData = await fetchData();
       mutate(newData, false); // Set revalidate to false to prevent automatic revalidation
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -52,9 +53,13 @@ export default function Home() {
           {/* line 1 */}
           <div className="w-full h-[1px] bg-gray-500" />
           {/* Dice button  */}
-          <div onClick={generateAdvice} className="absolute  flex justify-center items-center bottom-[-65px] left-1/2 -translate-x-1/2 -translate-y-1/2  w-16 h-16 bg-green-400 hover:bg-green-500 rounded-full cursor-pointer">
+          <motion.div
+            onClick={generateAdvice}
+            className="absolute  flex justify-center items-center bottom-[-65px] left-1/2 -translate-x-1/2 -translate-y-1/2  w-16 h-16 bg-green-300 hover:bg-hsl-primary rounded-full cursor-pointer"
+            whileHover={{ boxShadow: "0px 0px 20px hsl(150, 100%, 66%)"  }}
+          >
             <BsFillDice5Fill size={25} className="text-gray-800" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </main>
