@@ -1,9 +1,11 @@
 "use client";
-import { spawn } from "child_process";
-import { useState } from "react";
+
 import { BsFillDice5Fill } from "react-icons/bs";
 import useSWR from "swr";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import profile from "/public//profile.jpg";
 
 type FetcherArgs = [input: RequestInfo, init?: RequestInit];
 
@@ -85,14 +87,27 @@ export default function Home() {
           {/* Dice button  */}
           <motion.div
             onClick={generateAdvice}
-            className="absolute  flex justify-center items-center bottom-[-65px] left-1/2 -translate-x-1/2 -translate-y-1/2  w-16 h-16 bg-green-300 hover:bg-hsl-primary rounded-full cursor-pointer"
+            className="absolute  flex justify-center items-center bottom-[-65px] left-1/2 -translate-x-1/2 -translate-y-1/2  w-16 h-16 bg-green-300 hover:bg-hsl-primary rounded-full cursor-pointer "
             whileHover={{ boxShadow: "0px 0px 8px hsl(150, 100%, 66%)" }}
-            whileTap={{ boxShadow: "0px 0px 30px hsl(150, 100%, 66%)" }}
+            whileTap={{
+              boxShadow: "0px 0px 30px hsl(150, 100%, 66%)"
+            }}
           >
-            <BsFillDice5Fill size={25} className="text-gray-800" />
+            <BsFillDice5Fill size={25} className="text-gray-800 animate-pulse" />
           </motion.div>
         </div>
       </motion.div>
+
+      <Link href="https://justinelapura.vercel.app/">
+        <motion.div
+          className="fixed top-5 left-5 w-8 md:w-10 h-8 md:h-10 rounded-full overflow-hidden cursor-pointer hover:scale-105 duration-300"
+          initial={{ x: "230vw" }}
+          animate={{ x: 0 }}
+          transition={{ delay: 3, type: "tween" }}
+        >
+          <Image src={profile} alt="Profile" className="w-full h-full" />
+        </motion.div>
+      </Link>
     </main>
   );
 }
