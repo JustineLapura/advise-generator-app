@@ -86,8 +86,8 @@ export default function Home() {
           <motion.div
             onClick={generateAdvice}
             className="absolute  flex justify-center items-center bottom-[-65px] left-1/2 -translate-x-1/2 -translate-y-1/2  w-16 h-16 bg-green-300 hover:bg-hsl-primary rounded-full cursor-pointer"
-            
-            whileHover={{ boxShadow: "0px 0px 20px hsl(150, 100%, 66%)" }}
+            whileHover={{ boxShadow: "0px 0px 8px hsl(150, 100%, 66%)" }}
+            whileTap={{ boxShadow: "0px 0px 30px hsl(150, 100%, 66%)" }}
           >
             <BsFillDice5Fill size={25} className="text-gray-800" />
           </motion.div>
